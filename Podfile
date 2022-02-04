@@ -11,6 +11,8 @@ target 'ios-qiita-client-app' do
   target 'ios-qiita-client-appTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Quick', '~> 4.0'
+    pod 'Nimble', '~> 9.2'
   end
 
   target 'ios-qiita-client-appUITests' do
