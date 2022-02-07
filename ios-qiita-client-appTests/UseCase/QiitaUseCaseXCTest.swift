@@ -30,8 +30,6 @@ class QiitaUseCaseXCTest: XCTestCase {
     func testGetQiitaItems() async throws {
         let usecase = QiitaUsecase(repository: MockQiitaRepository())
         let qiitaItem: [QiitaItem] = try await usecase.getQiitaItems()
-        dump(qiitaItem)
-        dump(_getQiitaItems())
         XCTAssertEqual(qiitaItem, _getQiitaItems())
     }
 

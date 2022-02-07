@@ -139,8 +139,6 @@ class QiitaRepositoryXCTest: XCTestCase {
         let mockItems = [QiitaItem(title: "Vue.js + Flask + MySQL + 各種APIを使った検索アプリ開発", id: "ead8e02f14400a0cfd64", user: User(thumbnailUrl: "https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/684296/profile-images/1628501511")), QiitaItem(title: "C言語基礎：並び替え", id: "ead8e02f14400a0cfd64", user: User(thumbnailUrl: "https://avatars.githubusercontent.com/u/88176502?v=4"))]
 
         let qiitaItems = try await repository.getQiitaItems()
-        dump(mockItems)
-        dump(qiitaItems)
         XCTAssertEqual(qiitaItems, mockItems)
     }
 

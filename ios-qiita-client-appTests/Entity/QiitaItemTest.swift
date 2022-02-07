@@ -125,7 +125,6 @@ class QiitaItemTest: QuickSpec {
                 """.data(using: .utf8)!
 
                 let item: [QiitaItem] = try! JSONDecoder().decode([QiitaItem].self, from: json)
-                dump(item)
 
                 expect(item[0].title).to(equal("Vue.js + Flask + MySQL + 各種APIを使った検索アプリ開発"), description: "is it right title")
                 expect(item[0].id).to(equal("74a8fc43fa7286973141"), description: "is it right id")
