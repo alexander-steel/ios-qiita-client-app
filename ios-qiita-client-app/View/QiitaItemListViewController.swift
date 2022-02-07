@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QiitaItemListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class QiitaItemListViewController: UIViewController {
     @IBOutlet var tableview: UITableView!
 
     private var qiitaItems: [QiitaItem]?
@@ -27,20 +27,6 @@ class QiitaItemListViewController: UIViewController, UITableViewDelegate, UITabl
         tableview.register(UINib(nibName: "QiitaItemTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
 
         notificationCenter.addObserver(self, selector: #selector(loadQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
-    }
-
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return qiitaItems?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! QiitaItemTableViewCell
-
-        cell.idLabel.text = qiitaItems?[indexPath.row].id ?? "取得できませんでした"
-        cell.titleLabel.text = qiitaItems?[indexPath.row].title ?? "取得できませんでした"
-        cell.thumbnail.image = getImageByUrl(url: qiitaItems?[indexPath.row].user.thumbnailUrl ?? "https://iphone-mania.jp/uploads/2020/12/google-408194_640-e1607401813476.png")
-
-        return cell
     }
 }
 
@@ -62,5 +48,22 @@ private extension QiitaItemListViewController {
             print("Error : \(err.localizedDescription)")
         }
         return UIImage()
+    }
+}
+
+extension QiitaItemListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return qiitaItems?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! QiitaItemTableViewCell
+
+        cell.idLabel.text = qiitaItems?[indexPath.row].id ?? "取得できませんでした"
+        cell.titleLabel.text = qiitaItems?[indexPath.row].title ?? "取得できませんでした"
+        cell.thumbnail.image = getImageByUrl(url: qiitaItems?[indexPath.row].user.thumbnailUrl ?? "https://iphone-mania.jp/uploads/2020/12/google-408194_640-e1607401813476.png")
+
+        return cell
     }
 }
