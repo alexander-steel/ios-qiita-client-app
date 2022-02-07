@@ -25,7 +25,7 @@ final class QiitaItemListViewModel {
 
         do {
             result = try await usecase.getQiitaItems()
-            notificationCenter.post(name: Notification.Name(rawValue: "loadQiitaItem"), object: result)
+            notificationCenter.post(name: Notification.Name(rawValue: loadItem.rawValue), object: result)
         } catch {
             print(error)
         }
