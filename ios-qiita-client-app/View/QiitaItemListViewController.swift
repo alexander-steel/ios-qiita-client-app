@@ -11,21 +11,59 @@ class QiitaItemListViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableview: UITableView!
     
-    @IBOutlet weak var itemCell: UITableViewCell!
+    private var qiitaItems: [QiitaItem]?
     
+    private let notificationCenter = NotificationCenter()
+        private lazy var viewModel = QiitaItemListViewModel(notificationCenter: notificationCenter)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        detach {[weak self] in
+            try await self?.viewModel.loadQiitaItem()
+        }
+        
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.register(UINib(nibName: "QiitaItemTableViewCell",bundle: nil), forCellReuseIdentifier: "customCell")
+        
+        notificationCenter.addObserver(self, selector: #selector(self.loadQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
     }
-    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return qiitaItems?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return itemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! QiitaItemTableViewCell
+        
+        cell.idLabel.text = qiitaItems?[indexPath.row].id ?? "取得できませんでした"
+        cell.titleLabel.text = qiitaItems?[indexPath.row].title ?? "取得できませんでした"
+        cell.thumbnail.image = getImageByUrl(url: qiitaItems?[indexPath.row].user.thumbnailUrl ?? "https://iphone-mania.jp/uploads/2020/12/google-408194_640-e1607401813476.png")
+        
+        return cell
     }
 }
+
+private extension QiitaItemListViewController {
+    @objc func loadQiitaItem(notification: Notification) {
+        guard let qiitaItmes = notification.object as? [QiitaItem] else { return }
+        self.qiitaItems = qiitaItmes
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
+    }
+    
+    func getImageByUrl(url: String) -> UIImage{
+        let url = URL(string: url)
+        do {
+            let data = try Data(contentsOf: url!)
+            return UIImage(data: data)!
+        } catch let err {
+            print("Error : \(err.localizedDescription)")
+        }
+        return UIImage()
+    }
+}
+
+
