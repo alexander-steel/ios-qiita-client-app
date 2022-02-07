@@ -22,6 +22,9 @@ class QiitaApiService{
     }
 }
 
+//
+// Alamofireにはまだasync awaitで扱える口がないので、変換するおまじない
+//
 extension DataRequest {
     func publish<T>(_ type: T.Type) async throws -> T where T : Decodable {
             try await withCheckedThrowingContinuation { continuation in
