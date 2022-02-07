@@ -53,8 +53,8 @@ private extension QiitaItemListViewController {
             return UIImage(data: data)!
         } catch let err {
             print("Error : \(err.localizedDescription)")
+            return UIImage() ///画像が見つかりませんでした的なのを本来だったら返してあげるのが良さそう
         }
-        return UIImage()
     }
 }
 
