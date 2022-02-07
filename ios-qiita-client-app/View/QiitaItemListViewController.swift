@@ -22,10 +22,17 @@ class QiitaItemListViewController: UIViewController {
             try await self?.viewModel.loadQiitaItem()
         }
 
+        settingTableView()
+        settingNotificationcenter()
+    }
+    
+    func settingTableView(){
         tableview.delegate = self
         tableview.dataSource = self
         tableview.register(UINib(nibName: "QiitaItemTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
-
+    }
+    
+    func settingNotificationcenter(){
         notificationCenter.addObserver(self, selector: #selector(loadQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
     }
 }
