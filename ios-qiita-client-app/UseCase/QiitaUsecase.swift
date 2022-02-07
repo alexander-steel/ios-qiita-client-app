@@ -11,14 +11,13 @@ protocol QiitaUsecaseProtocol {
     func getQiitaItems() async throws -> [QiitaItem]
 }
 
-class QiitaUsecase :QiitaUsecaseProtocol {
-    
+class QiitaUsecase: QiitaUsecaseProtocol {
     private let repository: QiitaRepositoryProtocol
-    
-    init(repository: QiitaRepositoryProtocol){
+
+    init(repository: QiitaRepositoryProtocol) {
         self.repository = repository
     }
-    
+
     func getQiitaItems() async throws -> [QiitaItem] {
         return try await repository.getQiitaItems()
     }

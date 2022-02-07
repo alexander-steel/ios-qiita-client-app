@@ -8,13 +8,11 @@
 import UIKit
 
 class QiitaItemTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var idLabel: UILabel!
-    
-    @IBOutlet weak var thumbnail: UIImageView!
-    
-    
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var idLabel: UILabel!
+
+    @IBOutlet var thumbnail: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,5 +23,4 @@ class QiitaItemTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

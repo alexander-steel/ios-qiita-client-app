@@ -8,39 +8,38 @@
 import UIKit
 
 class QiitaItemListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var tableview: UITableView!
 
-    @IBOutlet weak var tableview: UITableView!
-    
     private var qiitaItems: [QiitaItem]?
-    
+
     private let notificationCenter = NotificationCenter()
-        private lazy var viewModel = QiitaItemListViewModel(notificationCenter: notificationCenter)
-    
+    private lazy var viewModel = QiitaItemListViewModel(notificationCenter: notificationCenter)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        detach {[weak self] in
+
+        detach { [weak self] in
             try await self?.viewModel.loadQiitaItem()
         }
-        
+
         tableview.delegate = self
         tableview.dataSource = self
-        tableview.register(UINib(nibName: "QiitaItemTableViewCell",bundle: nil), forCellReuseIdentifier: "customCell")
-        
-        notificationCenter.addObserver(self, selector: #selector(self.loadQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
+        tableview.register(UINib(nibName: "QiitaItemTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+
+        notificationCenter.addObserver(self, selector: #selector(loadQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return qiitaItems?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! QiitaItemTableViewCell
-        
+
         cell.idLabel.text = qiitaItems?[indexPath.row].id ?? "取得できませんでした"
         cell.titleLabel.text = qiitaItems?[indexPath.row].title ?? "取得できませんでした"
         cell.thumbnail.image = getImageByUrl(url: qiitaItems?[indexPath.row].user.thumbnailUrl ?? "https://iphone-mania.jp/uploads/2020/12/google-408194_640-e1607401813476.png")
-        
+
         return cell
     }
 }
@@ -48,13 +47,13 @@ class QiitaItemListViewController: UIViewController, UITableViewDelegate, UITabl
 private extension QiitaItemListViewController {
     @objc func loadQiitaItem(notification: Notification) {
         guard let qiitaItmes = notification.object as? [QiitaItem] else { return }
-        self.qiitaItems = qiitaItmes
+        qiitaItems = qiitaItmes
         DispatchQueue.main.async {
             self.tableview.reloadData()
         }
     }
-    
-    func getImageByUrl(url: String) -> UIImage{
+
+    func getImageByUrl(url: String) -> UIImage {
         let url = URL(string: url)
         do {
             let data = try Data(contentsOf: url!)
@@ -65,5 +64,3 @@ private extension QiitaItemListViewController {
         return UIImage()
     }
 }
-
-

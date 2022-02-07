@@ -13,11 +13,11 @@ protocol QiitaRepositoryProtocol {
 
 class QiitaRepository: QiitaRepositoryProtocol {
     private let apiservice: QiitaApiServiceProtocol
-    
-    init(apiservice: QiitaApiServiceProtocol){
+
+    init(apiservice: QiitaApiServiceProtocol) {
         self.apiservice = apiservice
     }
-    
+
     func getQiitaItems() async throws -> [QiitaItem] {
         return try await apiservice.getQiitaItems()
     }

@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 struct QiitaItem: Decodable, Equatable {
-    static func == (lhs: QiitaItem, rhs: QiitaItem) -> Bool {
+    static func == (_: QiitaItem, _: QiitaItem) -> Bool {
         return true
     }
-    
+
     let title: String
     let id: String
     let user: User
