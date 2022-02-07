@@ -33,12 +33,12 @@ class QiitaItemListViewController: UIViewController {
     }
     
     func settingNotificationcenter(){
-        notificationCenter.addObserver(self, selector: #selector(loadQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
+        notificationCenter.addObserver(self, selector: #selector(loadedQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
     }
 }
 
 private extension QiitaItemListViewController {
-    @objc func loadQiitaItem(notification: Notification) {
+    @objc func loadedQiitaItem(notification: Notification) {
         guard let qiitaItmes = notification.object as? [QiitaItem] else { return }
         qiitaItems = qiitaItmes
         DispatchQueue.main.async {
