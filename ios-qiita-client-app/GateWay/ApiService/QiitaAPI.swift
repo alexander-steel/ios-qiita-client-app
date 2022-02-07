@@ -15,9 +15,9 @@ protocol QiitaApiServiceProtocol {
 }
 
 class QiitaApiService: QiitaApiServiceProtocol {
-    let baseUrl = "https://qiita.com/api/v2"
+   private static let baseUrl = "https://qiita.com/api/v2"
     func getQiitaItems() async throws -> [QiitaItem] {
-        let result = try await AF.request("\(baseUrl)/items").publish([QiitaItem].self)
+        let result = try await AF.request("\(QiitaApiService.baseUrl)/items").publish([QiitaItem].self)
         return result
     }
 }
