@@ -13,11 +13,11 @@ class QiitaItemListViewController: UIViewController {
     private var qiitaItems: [QiitaItem]?
 
     private let notificationCenter = NotificationCenter()
-    private lazy var viewModel = QiitaItemListViewModel(notificationCenter: notificationCenter)
+    private var viewModel: QiitaItemListViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initializeViewModel()
         detach { [weak self] in
             try await self?.viewModel.loadQiitaItem()
         }
@@ -34,6 +34,12 @@ class QiitaItemListViewController: UIViewController {
     
     func settingNotificationcenter(){
         notificationCenter.addObserver(self, selector: #selector(loadedQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
+    }
+    
+    
+    ///本当はDIライブラリ使うなりしてDIコンテナに置いたり登録するのが良さそう
+    func initializeViewModel(){
+        viewModel = QiitaItemListViewModel(with: notificationCenter, usecase: QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService())))
     }
 }
 

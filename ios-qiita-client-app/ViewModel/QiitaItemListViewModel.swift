@@ -13,8 +13,8 @@ final class QiitaItemListViewModel {
     private let notificationCenter: NotificationCenter
     private let usecase: QiitaUsecaseProtocol
 
-    init(notificationCenter: NotificationCenter,
-         usecase: QiitaUsecaseProtocol = QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService()))){
+    init(with notificationCenter: NotificationCenter,
+         usecase: QiitaUsecaseProtocol){
         self.notificationCenter = notificationCenter
         self.usecase = usecase
     }
