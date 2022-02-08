@@ -45,17 +45,6 @@ private extension QiitaItemListViewController {
             self.tableview.reloadData()
         }
     }
-
-    func getImageByUrl(url: String) -> UIImage {
-        let url = URL(string: url)
-        do {
-            let data = try Data(contentsOf: url!)
-            return UIImage(data: data)!
-        } catch let err {
-            print("Error : \(err.localizedDescription)")
-            return UIImage() ///画像が見つかりませんでした的なのを本来だったら返してあげるのが良さそう
-        }
-    }
 }
 
 extension QiitaItemListViewController: UITableViewDelegate, UITableViewDataSource {
