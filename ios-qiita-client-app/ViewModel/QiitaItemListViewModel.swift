@@ -14,8 +14,7 @@ final class QiitaItemListViewModel {
     private let usecase: QiitaUsecaseProtocol
 
     init(notificationCenter: NotificationCenter,
-         usecase: QiitaUsecaseProtocol = QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService())))
-    {
+         usecase: QiitaUsecaseProtocol = QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService()))){
         self.notificationCenter = notificationCenter
         self.usecase = usecase
     }
