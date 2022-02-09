@@ -74,10 +74,9 @@ extension QiitaItemListViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func segueWebView(index: Int){
-        print("toush")
         let storyboard = UIStoryboard(name: "QiitaWebView", bundle: nil)
         let qiitaWebView = storyboard.instantiateViewController(withIdentifier: "QiitaWebView") as! QiitaWebViewController
         qiitaWebView.qiitaItem = qiitaItems?[index]
-        present(qiitaWebView, animated: true,completion: nil)
+        navigationController?.pushViewController(qiitaWebView, animated: true)
     }
 }
