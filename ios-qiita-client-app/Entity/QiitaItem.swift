@@ -17,7 +17,7 @@ struct QiitaItem: Decodable, Equatable {
     
     //
     //XcTestのために準拠させる必要があるだけなので、実装に使われることはない
-    //PRおダクトに使用するならこの辺考える必要ありhttps://qiita.com/uhooi/items/638a6116278a3e591773
+    //プロダクトに使用するならこの辺考える必要ありhttps://qiita.com/uhooi/items/638a6116278a3e591773
     //
     static func == (_rItem: QiitaItem, _lItem: QiitaItem) -> Bool {
         return _rItem.title == _lItem.title && _rItem.id == _lItem.id && _rItem.user.thumbnailUrl == _lItem.user.thumbnailUrl
