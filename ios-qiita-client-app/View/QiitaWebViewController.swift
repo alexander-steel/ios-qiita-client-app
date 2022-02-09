@@ -9,17 +9,17 @@ import Foundation
 import UIKit
 import WebKit
 
-class QiitaWebView : UIViewController {
+class QiitaWebViewController : UIViewController {
    
     var webView: WKWebView!
-    var url:URL?
+    var qiitaItem: QiitaItem?
     
     override func loadView() {
         setupWebView()
     }
     
     override func viewDidLoad() {
-        loadUrl(url: url ?? URL(string: "https://www.google.com/")!)
+        loadUrl(url: URL(string: qiitaItem?.url ?? "https://qiita.com/")!)
     }
     
     func loadUrl(url: URL){
@@ -40,10 +40,10 @@ class QiitaWebView : UIViewController {
     }
 }
 
-extension QiitaWebView: WKUIDelegate {
+extension QiitaWebViewController: WKUIDelegate {
     
 }
 
-extension QiitaWebView: WKNavigationDelegate {
+extension QiitaWebViewController: WKNavigationDelegate {
     
 }
