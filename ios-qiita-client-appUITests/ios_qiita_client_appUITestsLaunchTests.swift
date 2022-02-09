@@ -8,7 +8,6 @@
 import XCTest
 
 class ios_qiita_client_appUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

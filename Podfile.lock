@@ -1,22 +1,30 @@
 PODS:
   - Alamofire (5.5.0)
+  - Nimble (9.2.1)
+  - Quick (4.0.0)
   - Realm (10.22.0):
     - Realm/Headers (= 10.22.0)
   - Realm/Headers (10.22.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
+  - Nimble (~> 9.2)
+  - Quick (~> 4.0)
   - Realm (~> 10.22)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Nimble
+    - Quick
     - Realm
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
+  Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
   Realm: d9e4e5877095a6722145811f56fe89a531c9659d
 
-PODFILE CHECKSUM: 08c13621be70f3602b3123d89b302495433cd165
+PODFILE CHECKSUM: 52c2a73ef16a59f7e0bcdc4bf22b05b992a539b9
 
 COCOAPODS: 1.11.2
