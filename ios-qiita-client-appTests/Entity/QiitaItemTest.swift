@@ -128,10 +128,12 @@ class QiitaItemTest: QuickSpec {
 
                 expect(item[0].title).to(equal("Vue.js + Flask + MySQL + 各種APIを使った検索アプリ開発"), description: "is it right title")
                 expect(item[0].id).to(equal("74a8fc43fa7286973141"), description: "is it right id")
+                expect(item[0].url).to(equal("https://qiita.com/peartrees/items/74a8fc43fa7286973141"), description: "is it right url")
                 expect(item[0].user.thumbnailUrl).to(equal("https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/684296/profile-images/1628501511"), description: "is it right thumbnailUrl")
 
                 expect(item[1].title).to(equal("C言語基礎：並び替え"), description: "is it right title")
                 expect(item[1].id).to(equal("ead8e02f14400a0cfd64"), description: "is it right id")
+                expect(item[1].url).to(equal("https://qiita.com/kidenkadenyorozuya/items/ead8e02f14400a0cfd64"), description: "is it right url")
                 expect(item[1].user.thumbnailUrl).to(equal("https://avatars.githubusercontent.com/u/88176502?v=4"), description: "is it right thumbnailUrl")
             }
         }
