@@ -25,7 +25,7 @@ class QiitaItemListViewController: UIViewController {
         settingTableView()
         settingNotificationcenter()
     }
-    
+        
     func settingTableView(){
         tableview.delegate = self
         tableview.dataSource = self
@@ -67,5 +67,8 @@ extension QiitaItemListViewController: UITableViewDelegate, UITableViewDataSourc
         cell.thumbnail.image = getImageByUrl(url: qiitaItems?[indexPath.row].user.thumbnailUrl ?? "https://iphone-mania.jp/uploads/2020/12/google-408194_640-e1607401813476.png")
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }
