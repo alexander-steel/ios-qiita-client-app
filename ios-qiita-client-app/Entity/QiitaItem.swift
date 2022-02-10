@@ -12,6 +12,7 @@ struct QiitaItem: Decodable, Equatable {
 
     let title: String
     let id: String
+    let url: String
     let user: User
     
     
@@ -20,7 +21,10 @@ struct QiitaItem: Decodable, Equatable {
     //プロダクトに使用するならこの辺考える必要ありhttps://qiita.com/uhooi/items/638a6116278a3e591773
     //
     static func == (_rItem: QiitaItem, _lItem: QiitaItem) -> Bool {
-        return _rItem.title == _lItem.title && _rItem.id == _lItem.id && _rItem.user.thumbnailUrl == _lItem.user.thumbnailUrl
+        return _rItem.title == _lItem.title
+        && _rItem.id == _lItem.id
+        && _rItem.url == _lItem.url
+        && _rItem.user.thumbnailUrl == _lItem.user.thumbnailUrl
     }
 }
 
