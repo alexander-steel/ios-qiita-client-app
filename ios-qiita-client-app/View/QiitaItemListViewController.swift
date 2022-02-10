@@ -22,6 +22,7 @@ class QiitaItemListViewController: UIViewController {
             await self.viewModel.loadQiitaItem()
         }
 
+        setupNavigationBar()
         settingTableView()
         settingNotificationcenter()
     }
@@ -48,7 +49,16 @@ class QiitaItemListViewController: UIViewController {
     func settingNotificationcenter(){
         notificationCenter.addObserver(self, selector: #selector(loadedQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
     }
-    
+
+    func setupNavigationBar(){
+        let serchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: #selector(self.onClickSearchButton))
+        self.navigationItem.title = "記事一覧"
+        self.navigationItem.rightBarButtonItems = [serchButton]
+    }
+
+    @objc func onClickSearchButton() {
+
+    }
     
     ///本当はDIライブラリ使うなりしてDIコンテナに置いたり登録するのが良さそう
     func initializeViewModel(){
