@@ -24,7 +24,7 @@ class QiitaWebViewController : UIViewController, UINavigationBarDelegate {
         loadUrl(url: URL(string: qiitaItem?.url ?? "https://qiita.com/")!)
     }
     
-    func loadUrl(url: URL){
+    func loadUrl(url: URL) {
         let request = URLRequest(url: url)
         webView.load(request)
     }
