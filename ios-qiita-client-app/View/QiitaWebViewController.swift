@@ -45,9 +45,9 @@ class QiitaWebViewController : UIViewController, UINavigationBarDelegate {
         self.navigationItem.title = qiitaItem?.title ?? ""
         // iOS15ではNavigationBarのレンダリング方法が変わっていた・・・。
         if #available(iOS 15.0, *) {
-                let navigationBarAppearance = UINavigationBarAppearance()
+            let navigationBarAppearance = UINavigationBarAppearance()
             navigationBarAppearance.configureWithOpaqueBackground()
-                // Configure additional customizations here
+            // Configure additional customizations here
             self.navigationController?.navigationBar.standardAppearance
             = navigationBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance =
