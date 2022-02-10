@@ -19,7 +19,7 @@ final class QiitaItemListViewModel {
         self.usecase = usecase
     }
 
-    func loadQiitaItem() async {
+   @objc func loadQiitaItem() async {
         var result: [QiitaItem] = []
 
         do {

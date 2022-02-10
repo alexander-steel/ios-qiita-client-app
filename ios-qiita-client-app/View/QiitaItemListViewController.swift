@@ -18,8 +18,8 @@ class QiitaItemListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeViewModel()
-        detach { [weak self] in
-            try await self?.viewModel.loadQiitaItem()
+        Task {
+            await self.viewModel.loadQiitaItem()
         }
 
         settingTableView()
@@ -27,9 +27,22 @@ class QiitaItemListViewController: UIViewController {
     }
         
     func settingTableView(){
+        tableview.refreshControl = UIRefreshControl()
+        tableview.refreshControl?.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableview.delegate = self
         tableview.dataSource = self
         tableview.register(UINib(nibName: "QiitaItemTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+    }
+
+    @objc func refreshTableView() {
+        Task {
+            await viewModel.loadQiitaItem()
+        }
+
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+            self.tableview.refreshControl?.endRefreshing()
+        }
     }
     
     func settingNotificationcenter(){
