@@ -11,8 +11,7 @@ class QiitaItemListViewController: UIViewController {
     @IBOutlet var tableview: UITableView!
 
     private var qiitaItems: [QiitaItem]?
-
-    private let notificationCenter = NotificationCenter()
+    private var searchWord: String?
     private var viewModel: QiitaItemListViewModel!
 
     override func viewDidLoad() {
@@ -25,6 +24,10 @@ class QiitaItemListViewController: UIViewController {
         setupNavigationBar()
         settingTableView()
         settingNotificationcenter()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
     }
         
     func settingTableView(){
@@ -45,9 +48,10 @@ class QiitaItemListViewController: UIViewController {
             self.tableview.refreshControl?.endRefreshing()
         }
     }
-    
+
     func settingNotificationcenter(){
-        notificationCenter.addObserver(self, selector: #selector(loadedQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadedQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadItemWithSearchWord(notification:)), name: NSNotification.Name(rawValue: "loadItemWithSearchWord"), object: searchWord)
     }
 
     func setupNavigationBar(){
@@ -62,12 +66,12 @@ class QiitaItemListViewController: UIViewController {
 
         let qiitaSearchView = storyboard.instantiateViewController(withIdentifier: "QiitaSearchView") as! QiitaSearchViewController
 
-        self.navigationController?.present(qiitaSearchView, animated: false, completion: nil)
+        self.navigationController?.pushViewController(qiitaSearchView, animated: false)
     }
     
     ///本当はDIライブラリ使うなりしてDIコンテナに置いたり登録するのが良さそう
     func initializeViewModel(){
-        viewModel = QiitaItemListViewModel(with: notificationCenter, usecase: QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService())))
+        viewModel = QiitaItemListViewModel(usecase: QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService())))
     }
 }
 
@@ -77,6 +81,19 @@ private extension QiitaItemListViewController {
         qiitaItems = qiitaItmes
         DispatchQueue.main.async {
             self.tableview.reloadData()
+        }
+    }
+
+    @objc func loadItemWithSearchWord(notification: Notification){
+        guard let searchWord = notification.object as? String else { return }
+
+        Task {
+            await viewModel.loadQiitaItem()
+        }
+
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+            self.tableview.refreshControl?.endRefreshing()
         }
     }
 }

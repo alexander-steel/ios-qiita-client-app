@@ -10,12 +10,9 @@ import UIKit
 
 final class QiitaItemListViewModel {
     let loadItem = Notification.Name("loadQiitaItem")
-    private let notificationCenter: NotificationCenter
     private let usecase: QiitaUsecaseProtocol
 
-    init(with notificationCenter: NotificationCenter,
-         usecase: QiitaUsecaseProtocol){
-        self.notificationCenter = notificationCenter
+    init(usecase: QiitaUsecaseProtocol){
         self.usecase = usecase
     }
 
@@ -24,7 +21,7 @@ final class QiitaItemListViewModel {
 
         do {
             result = try await usecase.getQiitaItems()
-            notificationCenter.post(name: Notification.Name(rawValue: loadItem.rawValue), object: result)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: loadItem.rawValue), object: result)
         } catch {
             print(error)
         }

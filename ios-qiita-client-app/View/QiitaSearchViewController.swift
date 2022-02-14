@@ -10,6 +10,7 @@ import UIKit
 
 class QiitaSearchViewController: UIViewController, UISearchBarDelegate, UIAdaptivePresentationControllerDelegate{
 
+    let setWord = Notification.Name("loadItemWithSearchWord")
     @IBOutlet weak var searchBar: UISearchBar!
 
     override func viewDidLoad() {
@@ -23,9 +24,13 @@ class QiitaSearchViewController: UIViewController, UISearchBarDelegate, UIAdapti
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-        if let word = searchBar.text {
-            
+        guard let word = searchBar.text else {
+            return
         }
+
+        NotificationCenter.default.post(name: Notification.Name(rawValue: setWord.rawValue), object: word)
+
+        self.navigationController?.popViewController(animated: true)
     }
 
     func setupSearchBar(){
