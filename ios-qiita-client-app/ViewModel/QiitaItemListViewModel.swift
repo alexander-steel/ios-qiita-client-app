@@ -16,11 +16,11 @@ final class QiitaItemListViewModel {
         self.usecase = usecase
     }
 
-   @objc func loadQiitaItem() async {
+    @objc func loadQiitaItem(word: String) async {
         var result: [QiitaItem] = []
 
         do {
-            result = try await usecase.getQiitaItems()
+            result = try await usecase.getQiitaItems(word: word)
             NotificationCenter.default.post(name: Notification.Name(rawValue: loadItem.rawValue), object: result)
         } catch {
             print(error)

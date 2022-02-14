@@ -18,7 +18,7 @@ class QiitaItemListViewController: UIViewController {
         super.viewDidLoad()
         initializeViewModel()
         Task {
-            await self.viewModel.loadQiitaItem()
+            await self.viewModel.loadQiitaItem(word: "")
         }
 
         setupNavigationBar()
@@ -40,7 +40,7 @@ class QiitaItemListViewController: UIViewController {
 
     @objc func refreshTableView() {
         Task {
-            await viewModel.loadQiitaItem()
+            await viewModel.loadQiitaItem(word: searchWord ?? "")
         }
 
         DispatchQueue.main.async {
@@ -88,7 +88,7 @@ private extension QiitaItemListViewController {
         guard let searchWord = notification.object as? String else { return }
 
         Task {
-            await viewModel.loadQiitaItem()
+            await viewModel.loadQiitaItem(word: searchWord)
         }
 
         DispatchQueue.main.async {
