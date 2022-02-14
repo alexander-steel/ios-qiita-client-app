@@ -87,8 +87,10 @@ private extension QiitaItemListViewController {
     @objc func loadItemWithSearchWord(notification: Notification) {
         guard let searchWord = notification.object as? String else { return }
 
+        self.searchWord = searchWord
+
         Task {
-            await viewModel.loadQiitaItem(word: searchWord)
+            await viewModel.loadQiitaItem(word: self.searchWord ?? "")
         }
 
         DispatchQueue.main.async {
