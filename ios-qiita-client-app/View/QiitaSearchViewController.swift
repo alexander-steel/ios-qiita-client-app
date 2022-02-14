@@ -18,10 +18,6 @@ class QiitaSearchViewController: UIViewController, UISearchBarDelegate, UIAdapti
         setupSearchBar()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         guard let word = searchBar.text else {

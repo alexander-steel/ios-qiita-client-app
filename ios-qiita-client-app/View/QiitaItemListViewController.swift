@@ -26,10 +26,6 @@ class QiitaItemListViewController: UIViewController {
         settingNotificationcenter()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    }
-        
     func settingTableView() {
         tableview.refreshControl = UIRefreshControl()
         tableview.refreshControl?.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
