@@ -30,7 +30,7 @@ class QiitaItemListViewController: UIViewController {
     
     }
         
-    func settingTableView(){
+    func settingTableView() {
         tableview.refreshControl = UIRefreshControl()
         tableview.refreshControl?.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableview.delegate = self
@@ -49,12 +49,12 @@ class QiitaItemListViewController: UIViewController {
         }
     }
 
-    func settingNotificationcenter(){
+    func settingNotificationcenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadedQiitaItem(notification:)), name: NSNotification.Name(rawValue: "loadQiitaItem"), object: qiitaItems)
         NotificationCenter.default.addObserver(self, selector: #selector(loadItemWithSearchWord(notification:)), name: NSNotification.Name(rawValue: "loadItemWithSearchWord"), object: searchWord)
     }
 
-    func setupNavigationBar(){
+    func setupNavigationBar() {
         let serchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: #selector(self.onClickSearchButton))
         self.navigationItem.title = "記事一覧"
         self.navigationItem.rightBarButtonItems = [serchButton]
@@ -70,7 +70,7 @@ class QiitaItemListViewController: UIViewController {
     }
     
     ///本当はDIライブラリ使うなりしてDIコンテナに置いたり登録するのが良さそう
-    func initializeViewModel(){
+    func initializeViewModel() {
         viewModel = QiitaItemListViewModel(usecase: QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService())))
     }
 }
@@ -84,7 +84,7 @@ private extension QiitaItemListViewController {
         }
     }
 
-    @objc func loadItemWithSearchWord(notification: Notification){
+    @objc func loadItemWithSearchWord(notification: Notification) {
         guard let searchWord = notification.object as? String else { return }
 
         Task {
@@ -118,7 +118,7 @@ extension QiitaItemListViewController: UITableViewDelegate, UITableViewDataSourc
         segueWebView(index: indexPath.row)
     }
     
-    func segueWebView(index: Int){
+    func segueWebView(index: Int) {
         let storyboard = UIStoryboard(name: "QiitaWebView", bundle: nil)
         let qiitaWebView = storyboard.instantiateViewController(withIdentifier: "QiitaWebView") as! QiitaWebViewController
         qiitaWebView.qiitaItem = qiitaItems?[index]

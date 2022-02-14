@@ -33,15 +33,9 @@ class QiitaSearchViewController: UIViewController, UISearchBarDelegate, UIAdapti
         self.navigationController?.popViewController(animated: true)
     }
 
-    func setupSearchBar(){
+    func setupSearchBar() {
         searchBar.delegate = self
     }
-
-    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-
-        let qiitaListView = presentationController.presentingViewController as! QiitaItemListViewController
-            
-        }
 }
 
 extension QiitaSearchViewController :UISearchControllerDelegate {
