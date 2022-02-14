@@ -58,6 +58,11 @@ class QiitaItemListViewController: UIViewController {
 
     @objc func onClickSearchButton() {
 
+        let storyboard = UIStoryboard(name: "QiitaSearchView", bundle: nil)
+
+        let qiitaSearchView = storyboard.instantiateViewController(withIdentifier: "QiitaSearchView") as! QiitaSearchViewController
+
+        self.navigationController?.present(qiitaSearchView, animated: false, completion: nil)
     }
     
     ///本当はDIライブラリ使うなりしてDIコンテナに置いたり登録するのが良さそう
