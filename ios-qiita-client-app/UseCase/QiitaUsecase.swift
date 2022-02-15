@@ -8,7 +8,7 @@
 import Foundation
 
 protocol QiitaUsecaseProtocol {
-    func getQiitaItems() async throws -> [QiitaItem]
+    func getQiitaItems(word: String) async throws -> [QiitaItem]
 }
 
 class QiitaUsecase: QiitaUsecaseProtocol {
@@ -18,7 +18,7 @@ class QiitaUsecase: QiitaUsecaseProtocol {
         self.repository = repository
     }
 
-    func getQiitaItems() async throws -> [QiitaItem] {
-        return try await repository.getQiitaItems()
+    func getQiitaItems(word: String) async throws -> [QiitaItem] {
+        return try await repository.getQiitaItems(word: word)
     }
 }

@@ -29,7 +29,7 @@ class QiitaWebViewController : UIViewController, UINavigationBarDelegate {
         webView.load(request)
     }
     
-    func setupWebView(){
+    func setupWebView() {
         let webViewConfig = WKWebViewConfiguration()
         
         webView = WKWebView(frame: .zero, configuration: webViewConfig)
@@ -41,7 +41,7 @@ class QiitaWebViewController : UIViewController, UINavigationBarDelegate {
         view = webView
     }
     
-    func setupNavigationBar(){
+    func setupNavigationBar() {
         self.navigationItem.title = qiitaItem?.title ?? ""
         // iOS15ではNavigationBarのレンダリング方法が変わっていた・・・。
         if #available(iOS 15.0, *) {

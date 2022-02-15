@@ -11,14 +11,21 @@ import Foundation
 typealias ResultHandler<T> = (Result<T, Error>) -> Void
 
 protocol QiitaApiServiceProtocol {
-    func getQiitaItems() async throws -> [QiitaItem]
+    func getQiitaItems(word: String) async throws -> [QiitaItem]
 }
 
 class QiitaApiService: QiitaApiServiceProtocol {
    private static let baseUrl = "https://qiita.com/api/v2"
-    func getQiitaItems() async throws -> [QiitaItem] {
-        let result = try await AF.request("\(QiitaApiService.baseUrl)/items").publish([QiitaItem].self)
+    func getQiitaItems(word: String) async throws -> [QiitaItem] {
+        var query: String?
+        if !word.isEmpty {
+            let encodeWord: String! = word.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+
+            query = "query=title:\(encodeWord!)"
+        }
+        let result = try await AF.request("\(QiitaApiService.baseUrl)/items\(query ?? "")").publish([QiitaItem].self)
         return result
+
     }
 }
 

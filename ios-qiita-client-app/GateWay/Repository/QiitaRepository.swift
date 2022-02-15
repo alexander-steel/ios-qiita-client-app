@@ -8,7 +8,7 @@
 import Foundation
 
 protocol QiitaRepositoryProtocol {
-    func getQiitaItems() async throws -> [QiitaItem]
+    func getQiitaItems(word: String) async throws -> [QiitaItem]
 }
 
 class QiitaRepository: QiitaRepositoryProtocol {
@@ -18,7 +18,7 @@ class QiitaRepository: QiitaRepositoryProtocol {
         self.apiservice = apiservice
     }
 
-    func getQiitaItems() async throws -> [QiitaItem] {
-        return try await apiservice.getQiitaItems()
+    func getQiitaItems(word: String) async throws -> [QiitaItem] {
+        return try await apiservice.getQiitaItems(word: word)
     }
 }

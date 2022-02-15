@@ -10,21 +10,18 @@ import UIKit
 
 final class QiitaItemListViewModel {
     let loadItem = Notification.Name("loadQiitaItem")
-    private let notificationCenter: NotificationCenter
     private let usecase: QiitaUsecaseProtocol
 
-    init(with notificationCenter: NotificationCenter,
-         usecase: QiitaUsecaseProtocol){
-        self.notificationCenter = notificationCenter
+    init(usecase: QiitaUsecaseProtocol){
         self.usecase = usecase
     }
 
-    func loadQiitaItem() async {
+    @objc func loadQiitaItem(word: String) async {
         var result: [QiitaItem] = []
 
         do {
-            result = try await usecase.getQiitaItems()
-            notificationCenter.post(name: Notification.Name(rawValue: loadItem.rawValue), object: result)
+            result = try await usecase.getQiitaItems(word: word)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: loadItem.rawValue), object: result)
         } catch {
             print(error)
         }
