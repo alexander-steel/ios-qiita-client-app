@@ -9,5 +9,7 @@ import Foundation
 import UIKit
 
 class FavoriteQiitaItemListViewController: UIViewController {
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

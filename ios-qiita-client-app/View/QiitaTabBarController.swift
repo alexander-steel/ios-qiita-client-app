@@ -19,7 +19,7 @@ class QiitaTabBarController: UITabBarController {
 
         qiitaItemListViewController.tabBarItem = UITabBarItem(title: "itemList", image: .actions, tag: 0)
 
-        let favoriteQiitaItemListViewController = FavoriteQiitaItemListViewController()
+        let favoriteQiitaItemListViewController =  UIStoryboard(name: "FavoriteQiitaItemListView", bundle: Bundle.main).instantiateViewController(withIdentifier: "FavoriteQiitaItemListView") as! FavoriteQiitaItemListViewController
 
         favoriteQiitaItemListViewController.tabBarItem = UITabBarItem(title: "favorite", image: .strokedCheckmark, tag: 0)
 
