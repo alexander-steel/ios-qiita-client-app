@@ -56,6 +56,10 @@ class QiitaItemListViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [serchButton]
     }
 
+    func setupTabbar() {
+        
+    }
+
     @objc func onClickSearchButton() {
 
         let storyboard = UIStoryboard(name: "QiitaSearchView", bundle: nil)
