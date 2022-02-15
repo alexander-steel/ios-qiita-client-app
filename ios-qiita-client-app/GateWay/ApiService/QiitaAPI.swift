@@ -17,12 +17,13 @@ protocol QiitaApiServiceProtocol {
 class QiitaApiService: QiitaApiServiceProtocol {
    private static let baseUrl = "https://qiita.com/api/v2"
     func getQiitaItems(word: String) async throws -> [QiitaItem] {
+        var query: String?
         if !word.isEmpty {
             let encodeWord: String! = word.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-            let result = try await AF.request("\(QiitaApiService.baseUrl)/items?query=title:\(encodeWord!)").publish([QiitaItem].self)
-            return result
+
+            query = "query=title:\(encodeWord!)"
         }
-        let result = try await AF.request("\(QiitaApiService.baseUrl)/items").publish([QiitaItem].self)
+        let result = try await AF.request("\(QiitaApiService.baseUrl)/items\(query ?? "")").publish([QiitaItem].self)
         return result
 
     }
