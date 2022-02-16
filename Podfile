@@ -6,6 +6,7 @@ target 'ios-qiita-client-app' do
   use_frameworks!
   pod 'Alamofire', '~> 5.5'
   pod 'Realm', '~> 10.22'
+  pod ‘RealmSwift’
   # Pods for ios-qiita-client-app
 
   target 'ios-qiita-client-appTests' do
