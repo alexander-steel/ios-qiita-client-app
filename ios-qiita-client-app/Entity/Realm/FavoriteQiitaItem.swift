@@ -34,7 +34,7 @@ final class FavoriteQiitaItemUser: Object {
 
 extension FavoriteQiitaItem {
     func toDTO() -> QiitaItem {
-        return QiitaItem.init(title: title, id: id, url: url, user: FavoriteQiitaItemUser().toDTO())
+        return QiitaItem.init(title: title, id: id, url: url, user: User(thumbnailUrl: FavoriteQiitaItemUser().toDTO().thumbnailUrl))
     }
 }
 

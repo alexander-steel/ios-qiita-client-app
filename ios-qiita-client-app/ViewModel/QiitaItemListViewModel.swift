@@ -28,7 +28,7 @@ final class QiitaItemListViewModel {
         }
     }
 
-    func saveFavoriteQiitaItem(qiitaItem: QiitaItem){
+    func saveFavoriteQiitaItem(qiitaItem: QiitaItem) {
         usecase.saveFavoriteQiitaItem(qiitaItem: qiitaItem)
     }
 }

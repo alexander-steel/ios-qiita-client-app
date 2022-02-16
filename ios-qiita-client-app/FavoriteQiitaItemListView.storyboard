@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorite Qiita Item List View Controller-->
+        <!--FavoriteQiitaItemListViewController-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="FavoriteQiitaItemListView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="FavoriteQiitaItemListViewController" customModule="ios_qiita_client_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteQiitaItemListView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" userLabel="FavoriteQiitaItemListViewController" customClass="FavoriteQiitaItemListViewController" customModule="ios_qiita_client_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,6 +30,9 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="qEH-FV-aw0" secondAttribute="bottom" id="nXQ-1F-G1C"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableview" destination="qEH-FV-aw0" id="1Gt-xA-9Gw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

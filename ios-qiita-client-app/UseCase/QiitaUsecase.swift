@@ -11,6 +11,7 @@ protocol QiitaUsecaseProtocol {
     func getQiitaItems(word: String) async throws -> [QiitaItem]
     func saveFavoriteQiitaItem(qiitaItem: QiitaItem)
     func getFavoriteQiitaItems() -> [QiitaItem]
+    func deleteQiitaItems()
 }
 
 class QiitaUsecase: QiitaUsecaseProtocol {
@@ -31,5 +32,9 @@ class QiitaUsecase: QiitaUsecaseProtocol {
 
     func getFavoriteQiitaItems() -> [QiitaItem] {
         return repository.getFavoriteQiitaItems()
+    }
+
+    func deleteQiitaItems() {
+        repository.deleteQiitaItems()
     }
 }

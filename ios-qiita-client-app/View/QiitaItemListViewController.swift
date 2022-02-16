@@ -56,10 +56,6 @@ class QiitaItemListViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [serchButton]
     }
 
-    func setupTabbar() {
-        
-    }
-
     @objc func onClickSearchButton() {
 
         let storyboard = UIStoryboard(name: "QiitaSearchView", bundle: nil)
@@ -118,6 +114,24 @@ extension QiitaItemListViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         segueWebView(index: indexPath.row)
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let registerAction = UIContextualAction(style: .normal, title: "お気に入りに追加") { [self] (action, view, completionHandler) in
+
+            self.viewModel.saveFavoriteQiitaItem(qiitaItem: qiitaItems![indexPath.row])
+
+            completionHandler(true)
+
+        }
+
+
+        let deleteAction = UIContextualAction(style: .destructive, title: "キャンセル") { (action, view, completionHandler) in
+              completionHandler(true)
+        }
+
+        return UISwipeActionsConfiguration(actions: [deleteAction, registerAction])
     }
     
     func segueWebView(index: Int) {

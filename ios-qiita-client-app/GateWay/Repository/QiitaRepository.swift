@@ -11,6 +11,7 @@ protocol QiitaRepositoryProtocol {
     func getQiitaItems(word: String) async throws -> [QiitaItem]
     func saveFavoriteQiitaItem(qiitaItem: QiitaItem)
     func getFavoriteQiitaItems() -> [QiitaItem]
+    func deleteQiitaItems()
 }
 
 class QiitaRepository: QiitaRepositoryProtocol {
@@ -31,5 +32,9 @@ class QiitaRepository: QiitaRepositoryProtocol {
 
     func saveFavoriteQiitaItem(qiitaItem: QiitaItem) {
         self.realmManager.saveFavoriteQiitaItem(qiitaItem: qiitaItem)
+    }
+
+    func deleteQiitaItems() {
+        self.realmManager.deleteQiitaItems()
     }
 }

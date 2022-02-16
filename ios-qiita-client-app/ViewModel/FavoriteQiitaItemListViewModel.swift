@@ -21,4 +21,8 @@ final class FavoriteQiitaItemListViewModel {
         result = usecase.getFavoriteQiitaItems()
         NotificationCenter.default.post(name: Notification.Name(rawValue: loadFavoriteItem.rawValue), object: result)
     }
+
+    func deleteQiitaItems() {
+        usecase.deleteQiitaItems()
+    }
 }
