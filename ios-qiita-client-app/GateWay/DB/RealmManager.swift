@@ -31,7 +31,6 @@ final class RealmManager: LocalManager {
     func getFavoriteQiitaItem() -> [QiitaItem]{
         let realm = try! Realm()
         let result = realm.objects(FavoriteQiitaItem.self)
-        print("getfav")
         let qiitaitemList = result.reduce(into: [QiitaItem]()) { (list, element) -> () in
 
             list.append(QiitaItem(title: element.title, id: element.id, url: element.url, user: User(thumbnailUrl: element.user!.thumbnailUrl)))

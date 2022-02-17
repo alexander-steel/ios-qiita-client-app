@@ -24,7 +24,6 @@ class FavoriteQiitaItemListViewController: UIViewController {
     }
 
     func initializeViewModel() {
-        print("inini")
         viewModel = FavoriteQiitaItemListViewModel(usecase: QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService())))
     }
 
