@@ -20,7 +20,6 @@ final class RealmManager: LocalManager {
         let favoriteQiitaItem = FavoriteQiitaItem(qiitaItem: qiitaItem)
 
         do {
-            print("saveFavoriteQiitaItem")
             try realm.write {
                 realm.add(favoriteQiitaItem)
             }
@@ -29,15 +28,13 @@ final class RealmManager: LocalManager {
         }
     }
 
-    func getFavoriteQiitaItem() -> [QiitaItem] {
+    func getFavoriteQiitaItem() -> [QiitaItem]{
         let realm = try! Realm()
         let result = realm.objects(FavoriteQiitaItem.self)
-        var qiitaitemList: [QiitaItem] = []
+        print("getfav")
+        let qiitaitemList = result.reduce(into: [QiitaItem]()) { (list, element) -> () in
 
-        for qiitaObj in result {
-
-            let qiitaItem: QiitaItem = QiitaItem(title: qiitaObj.title, id: qiitaObj.id, url: qiitaObj.url , user: User(thumbnailUrl: qiitaObj.user!.thumbnailUrl))
-            qiitaitemList.append(qiitaItem)
+            list.append(QiitaItem(title: element.title, id: element.id, url: element.url, user: User(thumbnailUrl: element.user!.thumbnailUrl)))
         }
 
         return qiitaitemList

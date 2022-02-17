@@ -24,10 +24,13 @@ class FavoriteQiitaItemListViewController: UIViewController {
     }
 
     func initializeViewModel() {
+        print("inini")
         viewModel = FavoriteQiitaItemListViewModel(usecase: QiitaUsecase(repository: QiitaRepository(apiservice: QiitaApiService())))
     }
 
     func settingTableView() {
+        tableview.refreshControl = UIRefreshControl()
+        tableview.refreshControl?.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableview.delegate = self
         tableview.dataSource = self
         tableview.register(UINib(nibName: "QiitaItemTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
@@ -41,6 +44,14 @@ class FavoriteQiitaItemListViewController: UIViewController {
         self.navigationItem.title = "お気に入り記事"
         let trashButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(self.onClickTrashButtonButton))
         self.navigationItem.rightBarButtonItems = [trashButton]
+    }
+
+    @objc func refreshTableView() {
+        self.viewModel.loadFavoriteQiitaItems()
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+            self.tableview.refreshControl?.endRefreshing()
+        }
     }
 
     @objc func onClickTrashButtonButton() {
