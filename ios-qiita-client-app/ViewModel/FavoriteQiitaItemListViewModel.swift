@@ -17,8 +17,7 @@ final class FavoriteQiitaItemListViewModel {
     }
 
     @objc func loadFavoriteQiitaItems(){
-        var result: [QiitaItem] = []
-        result = usecase.getFavoriteQiitaItems()
+        let result: [QiitaItem] = usecase.getFavoriteQiitaItems()
         NotificationCenter.default.post(name: Notification.Name(rawValue: loadFavoriteItem.rawValue), object: result)
     }
 
