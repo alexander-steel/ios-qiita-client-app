@@ -9,8 +9,7 @@ import Foundation
 import RealmSwift
 
 final class FavoriteQiitaItem: Object {
-    @objc dynamic var title: String
-    = ""
+    @objc dynamic var title: String = ""
     @objc dynamic var id: String = ""
     @objc dynamic var url: String = ""
     @objc dynamic var user: FavoriteQiitaItemUser?
