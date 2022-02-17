@@ -10,6 +10,7 @@ import UIKit
 
 final class QiitaItemListViewModel {
     let loadItem = Notification.Name("loadQiitaItem")
+    let saveFavoriteItem = Notification.Name("saveFavoriteItem")
     private let usecase: QiitaUsecaseProtocol
 
     init(usecase: QiitaUsecaseProtocol){
@@ -25,5 +26,9 @@ final class QiitaItemListViewModel {
         } catch {
             print(error)
         }
+    }
+
+    func saveFavoriteQiitaItem(qiitaItem: QiitaItem) {
+        usecase.saveFavoriteQiitaItem(qiitaItem: qiitaItem)
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 struct QiitaItem: Decodable, Equatable {
 
     let title: String

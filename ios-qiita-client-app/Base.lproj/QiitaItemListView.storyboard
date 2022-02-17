@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="clk-BN-GYg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4kv-bS-E3t">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -8,23 +8,42 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Qiita Tab Bar Controller-->
+        <scene sceneID="l3J-ZG-Hzu">
+            <objects>
+                <tabBarController id="4kv-bS-E3t" customClass="QiitaTabBarController" customModule="ios_qiita_client_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="k5g-F0-TkK"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NN2-TT-k6O">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="clk-BN-GYg" kind="relationship" relationship="viewControllers" id="XE7-YP-maI"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eWh-Y3-zyh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1478" y="53"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="DSD-kB-MVZ">
             <objects>
                 <navigationController id="clk-BN-GYg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="CgF-Gf-k89"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixS-sf-NgP">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jqn-Au-TwU"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="a7E-lA-3AV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kui-TE-cIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-888" y="53"/>
+            <point key="canvasLocation" x="-736" y="53"/>
         </scene>
-        <!--Qiita Item List View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="QiitaListView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="QiitaItemListViewController" customModule="ios_qiita_client_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,20 +52,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fag-Rg-KlB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="fag-Rg-KlB" secondAttribute="bottom" id="H5N-4f-kUm"/>
+                            <constraint firstItem="fag-Rg-KlB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7UW-YV-Jpv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fag-Rg-KlB" secondAttribute="trailing" id="OoZ-18-00r"/>
                             <constraint firstItem="fag-Rg-KlB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TYx-oo-4Qj"/>
                             <constraint firstItem="fag-Rg-KlB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="pS0-k8-gz6"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Rxg-yh-g85"/>
                     <navigationItem key="navigationItem" id="LL9-cA-Tqf"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableview" destination="fag-Rg-KlB" id="Lsb-uq-bVG"/>
                     </connections>
