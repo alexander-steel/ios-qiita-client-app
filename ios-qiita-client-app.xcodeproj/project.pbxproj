@@ -39,6 +39,10 @@
 		C05C755D27BBBA3400E147E8 /* FavoriteQiitaItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05C755C27BBBA3400E147E8 /* FavoriteQiitaItemListViewModel.swift */; };
 		C05C756027BBD01A00E147E8 /* FavoriteQiitaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05C755F27BBD01900E147E8 /* FavoriteQiitaItem.swift */; };
 		C05C756327BC86DF00E147E8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05C756227BC86DF00E147E8 /* RealmManager.swift */; };
+		C0C6380B27BF3ABA0079F935 /* QiitaItemARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C6380A27BF3ABA0079F935 /* QiitaItemARViewController.swift */; };
+		C0C6380D27BF3C970079F935 /* QiitaItemARView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0C6380C27BF3C970079F935 /* QiitaItemARView.storyboard */; };
+		C0C6381327BF8D820079F935 /* QiitaUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C6381227BF8D820079F935 /* QiitaUiView.swift */; };
+		C0C6381527BF8DCA0079F935 /* QiitaUiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C6381427BF8DCA0079F935 /* QiitaUiView.xib */; };
 		C68DB7B5076915C15008128B /* Pods_ios_qiita_client_app_ios_qiita_client_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AAFED41F3A546A25954715B /* Pods_ios_qiita_client_app_ios_qiita_client_appUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +104,10 @@
 		C05C755C27BBBA3400E147E8 /* FavoriteQiitaItemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteQiitaItemListViewModel.swift; sourceTree = "<group>"; };
 		C05C755F27BBD01900E147E8 /* FavoriteQiitaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteQiitaItem.swift; sourceTree = "<group>"; };
 		C05C756227BC86DF00E147E8 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		C0C6380A27BF3ABA0079F935 /* QiitaItemARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaItemARViewController.swift; sourceTree = "<group>"; };
+		C0C6380C27BF3C970079F935 /* QiitaItemARView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QiitaItemARView.storyboard; sourceTree = "<group>"; };
+		C0C6381227BF8D820079F935 /* QiitaUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaUiView.swift; sourceTree = "<group>"; };
+		C0C6381427BF8DCA0079F935 /* QiitaUiView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QiitaUiView.xib; sourceTree = "<group>"; };
 		C71E0A7B762660DE6EB61BFD /* Pods-ios-qiita-client-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-qiita-client-app.release.xcconfig"; path = "Target Support Files/Pods-ios-qiita-client-app/Pods-ios-qiita-client-app.release.xcconfig"; sourceTree = "<group>"; };
 		EFC90E8D298F42D3144528D8 /* Pods-ios-qiita-client-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-qiita-client-appTests.debug.xcconfig"; path = "Target Support Files/Pods-ios-qiita-client-appTests/Pods-ios-qiita-client-appTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FCD7DE2FD16895402579430E /* Pods-ios-qiita-client-app-ios-qiita-client-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-qiita-client-app-ios-qiita-client-appUITests.debug.xcconfig"; path = "Target Support Files/Pods-ios-qiita-client-app-ios-qiita-client-appUITests/Pods-ios-qiita-client-app-ios-qiita-client-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +201,7 @@
 				C05C754C27B3897D00E147E8 /* QiitaWebView.storyboard */,
 				C05C755027B518D000E147E8 /* QiitaSearchView.storyboard */,
 				C05C755A27BBB7DF00E147E8 /* FavoriteQiitaItemListView.storyboard */,
+				C0C6380C27BF3C970079F935 /* QiitaItemARView.storyboard */,
 				C05C74DE27ACD6DA00E147E8 /* Assets.xcassets */,
 				C05C74E027ACD6DA00E147E8 /* LaunchScreen.storyboard */,
 				C05C74E327ACD6DA00E147E8 /* Info.plist */,
@@ -257,11 +266,13 @@
 		C05C750927ACDBC300E147E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C0C6381127BF8D4C0079F935 /* CustomUIView */,
 				C05C753827B10FCC00E147E8 /* QiitaItemListViewController.swift */,
 				C05C754A27B36DE700E147E8 /* QiitaWebViewController.swift */,
 				C05C754E27B5161E00E147E8 /* QiitaSearchViewController.swift */,
 				C05C755627BBAFBD00E147E8 /* QiitaTabBarController.swift */,
 				C05C755827BBB18700E147E8 /* FavoriteQiitaItemListViewController.swift */,
+				C0C6380A27BF3ABA0079F935 /* QiitaItemARViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -340,6 +351,15 @@
 				C05C755F27BBD01900E147E8 /* FavoriteQiitaItem.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		C0C6381127BF8D4C0079F935 /* CustomUIView */ = {
+			isa = PBXGroup;
+			children = (
+				C0C6381227BF8D820079F935 /* QiitaUiView.swift */,
+				C0C6381427BF8DCA0079F935 /* QiitaUiView.xib */,
+			);
+			path = CustomUIView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,6 +476,8 @@
 				C05C74E227ACD6DA00E147E8 /* LaunchScreen.storyboard in Resources */,
 				C05C754027B120B500E147E8 /* QiitaItemTableViewCell.xib in Resources */,
 				C05C754D27B3897D00E147E8 /* QiitaWebView.storyboard in Resources */,
+				C0C6381527BF8DCA0079F935 /* QiitaUiView.xib in Resources */,
+				C0C6380D27BF3C970079F935 /* QiitaItemARView.storyboard in Resources */,
 				C05C74DF27ACD6DA00E147E8 /* Assets.xcassets in Resources */,
 				C05C755B27BBB7DF00E147E8 /* FavoriteQiitaItemListView.storyboard in Resources */,
 				C05C74DD27ACD6D600E147E8 /* QiitaItemListView.storyboard in Resources */,
@@ -618,6 +640,8 @@
 				C05C753B27B1135500E147E8 /* QiitaItemListViewModel.swift in Sources */,
 				C05C754927B260D300E147E8 /* ImageByUrl.swift in Sources */,
 				C05C755D27BBBA3400E147E8 /* FavoriteQiitaItemListViewModel.swift in Sources */,
+				C0C6380B27BF3ABA0079F935 /* QiitaItemARViewController.swift in Sources */,
+				C0C6381327BF8D820079F935 /* QiitaUiView.swift in Sources */,
 				C05C74D827ACD6D600E147E8 /* SceneDelegate.swift in Sources */,
 				C05C754F27B5161F00E147E8 /* QiitaSearchViewController.swift in Sources */,
 			);
@@ -729,7 +753,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -784,7 +808,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
