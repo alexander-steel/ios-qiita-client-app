@@ -18,12 +18,7 @@ class QiitaItemARViewController: UIViewController, ARSCNViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneView.delegate = self
-        sceneView.scene = SCNScene()
-        sceneView.debugOptions = [.showFeaturePoints]
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
-        sceneView.session.run(configuration)
+        setupScene()
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -31,6 +26,16 @@ class QiitaItemARViewController: UIViewController, ARSCNViewDelegate {
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+    }
+
+
+    func setupScene(){
+        sceneView.delegate = self
+        sceneView.scene = SCNScene()
+        sceneView.debugOptions = [.showFeaturePoints]
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration)
     }
 
 
