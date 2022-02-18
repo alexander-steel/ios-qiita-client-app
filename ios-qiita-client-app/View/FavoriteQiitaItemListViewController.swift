@@ -42,7 +42,8 @@ class FavoriteQiitaItemListViewController: UIViewController {
     func setupNavigationbar() {
         self.navigationItem.title = "お気に入り記事"
         let trashButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(self.onClickTrashButtonButton))
-        self.navigationItem.rightBarButtonItems = [trashButton]
+        let arButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(self.onClickARButton))
+        self.navigationItem.rightBarButtonItems = [trashButton, arButton]
     }
 
     @objc func refreshTableView() {
@@ -60,6 +61,13 @@ class FavoriteQiitaItemListViewController: UIViewController {
             self.tableview.reloadData()
         }
     }
+
+    @objc func onClickARButton() {
+        let storyboard = UIStoryboard(name: "QiitaItemARView", bundle: nil)
+        let qiitaARView = storyboard.instantiateViewController(withIdentifier: "QiitaItemARView") as! QiitaItemARViewController
+        qiitaARView.qiitaItemImage = uiViewtoImage(view: createQiitaUiView(qiitaItem: qiitaItems?[0] ?? QiitaItem(title: "None", id: "None", url: "None", user: User(thumbnailUrl: "None")))) //　雑に先頭のやつだけ
+        navigationController?.pushViewController(qiitaARView, animated: true)
+    }
 }
 
 private extension FavoriteQiitaItemListViewController {
@@ -70,6 +78,29 @@ private extension FavoriteQiitaItemListViewController {
         DispatchQueue.main.async {
             self.tableview.reloadData()
         }
+    }
+
+    func createQiitaUiView(qiitaItem: QiitaItem) -> QiitaUiView {
+        let view = UINib(nibName: "QiitaUiView", bundle: nil)
+            .instantiate(withOwner: nil, options: nil)
+            .first as! QiitaUiView
+        view.title.text = qiitaItem.title
+        view.id.text = qiitaItem.id
+        view.image.image = getImageByUrl(url: qiitaItem.user.thumbnailUrl)
+        return view
+    }
+
+    func uiViewtoImage(view:UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        view.isHidden = false
+        view.layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        view.isHidden = true
+        return image
     }
 }
 
